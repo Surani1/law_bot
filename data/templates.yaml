@@ -1,0 +1,68 @@
+- title: Договор купли-продажи
+  template_text: |
+    {soname_seller}, {name_seller}, {surname_seller} года рождения, проживающий/ая по адресу: {adress_seller}. 
+    Паспорт: серия {pass_series_seller}, номер {pass_number_seller}, выдан {pass_issued_by_seller} {pass_time_seller} год. 
+    Именуемый(ая) в дальнейшем «Продавец».
+    
+    {soname_buyer}, {name_buyer}, {surname_buyer} года рождения, проживающий/ая по адресу: {adress_buyer}. 
+    Паспорт: серия {pass_series_buyer}, номер {pass_number_buyer}, выдан {pass_issued_by_buyer} {pass_time_buyer} год. 
+    Именуемый(ая) в дальнейшем «Покупатель».
+    
+    Стороны заключили настоящий договор о нижеследующем:
+    1. Предмет договора: {object_name}.
+    2. Цена: {price} рублей.
+  fields:
+    - soname_seller
+    - name_seller
+    - surname_seller
+    - adress_seller
+    - pass_series_seller
+    - pass_number_seller
+    - pass_issued_by_seller
+    - pass_time_seller
+    - soname_buyer
+    - name_buyer
+    - surname_buyer
+    - adress_buyer
+    - pass_series_buyer
+    - pass_number_buyer
+    - pass_issued_by_buyer
+    - pass_time_buyer
+    - object_name
+    - price
+
+- title: Договор аренды квартиры
+  template_text: |
+    {soname_landlord}, {name_landlord}, {surname_landlord} года рождения, проживающий/ая по адресу: {adress_landlord}. 
+    Паспорт: серия {pass_series_landlord}, номер {pass_number_landlord}, выдан {pass_issued_by_landlord} {pass_time_landlord} год. 
+    Именуемый(ая) в дальнейшем «Арендодатель».
+    
+    {soname_tenant}, {name_tenant}, {surname_tenant} года рождения, проживающий/ая по адресу: {adress_tenant}. 
+    Паспорт: серия {pass_series_tenant}, номер {pass_number_tenant}, выдан {pass_issued_by_tenant} {pass_time_tenant} год. 
+    Именуемый(ая) в дальнейшем «Арендатор».
+    
+    Стороны заключили настоящий договор о нижеследующем:
+    1. Предмет договора: {apartment_address}.
+    2. Срок аренды: с {rent_start} по {rent_end}.
+    3. Арендная плата: {rent_price} рублей в месяц.
+  fields:
+    - soname_landlord
+    - name_landlord
+    - surname_landlord
+    - adress_landlord
+    - pass_series_landlord
+    - pass_number_landlord
+    - pass_issued_by_landlord
+    - pass_time_landlord
+    - soname_tenant
+    - name_tenant
+    - surname_tenant
+    - adress_tenant
+    - pass_series_tenant
+    - pass_number_tenant
+    - pass_issued_by_tenant
+    - pass_time_tenant
+    - apartment_address
+    - rent_start
+    - rent_end
+    - rent_price
