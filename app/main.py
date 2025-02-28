@@ -1,7 +1,6 @@
 import os
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
-from bot_handlers import start, help_command, input_data, process_input, select_doc, process_select, generate_doc, button_callback, process_input_and_select
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, filters
+from bot_handlers import start, help_command, input_data, select_doc, generate_doc, process_input_and_select, button_callback
 
 def main():
     TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")

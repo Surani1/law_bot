@@ -24,5 +24,7 @@ logs/
 # VS Code
 .vscode/
 
-# TTF
+# SHRIFT
 *.ttf
+*.pkl
+*.cw127.pkl
