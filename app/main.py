@@ -1,6 +1,6 @@
 import os
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler, filters
-from bot_handlers import start, help_command, input_data, select_doc, generate_doc, process_input_and_select, button_callback
+from app.bot_handlers import start, help_command, input_data, select_doc, generate_doc, process_input_and_select, button_callback
 
 def main():
     TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
