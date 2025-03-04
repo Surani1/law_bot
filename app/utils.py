@@ -1,8 +1,10 @@
+from app.config import LANGUAGES_PATH
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import yaml
 
 def load_messages(language):
-    with open(r'config/languages.yaml', 'r', encoding='utf-8') as file:
+    languages = LANGUAGES_PATH
+    with open(languages, 'r', encoding='utf-8') as file:
         messages = yaml.safe_load(file)
         return messages.get(language, messages.get('ru'))  # RU/EN as default
 

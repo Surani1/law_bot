@@ -4,23 +4,36 @@ from telegram import Update
 from telegram.ext import ContextTypes
 from app.utils import create_inline_menu, load_messages
 from app.document_generator import load_templates, generate_pdf_from_template
+from app.config import TEMPLATES_PATH
 
 def get_language_and_messages(context):
     language = context.user_data.get('language', 'ru')
     return language, load_messages(language)
 
+def error_handler(func):
+    async def wrapper(update, context):
+        try:
+            return await func(update, context)
+        except Exception as e:
+            logging.error(f"Ошибка в {func.__name__}: {e}", exc_info=True)
+            await update.message.reply_text("Произошла ошибка, попробуйте позже.")
+    return wrapper
+
+@error_handler
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     language, messages = get_language_and_messages(context)
     context.user_data['language'] = language
     keyboard = create_inline_menu(language)
     await context.bot.send_message(chat_id=update.effective_chat.id, text=messages['start'], reply_markup=keyboard)
 
+@error_handler
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     language, messages = get_language_and_messages(context)
     await context.bot.send_message(chat_id=update.effective_chat.id, text=messages['help'])
 
+@error_handler
 async def input_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    messages = get_language_and_messages(context)
+    language, messages = get_language_and_messages(context)
 
     if 'selected_doc' in context.user_data:
         required_fields = context.user_data['selected_doc']['fields']
@@ -31,8 +44,9 @@ async def input_data(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     context.user_data['input_step'] = 'data'
 
+@error_handler
 async def process_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    messages = get_language_and_messages(context)
+    language, messages = get_language_and_messages(context)
 
     if 'input_step' in context.user_data and context.user_data['input_step'] == 'data':
         data = update.message.text
@@ -48,10 +62,11 @@ async def process_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data['fields'] = dict(zip(required_fields, fields))
         await context.bot.send_message(chat_id=update.effective_chat.id, text=messages['input_data_success'])
 
+@error_handler
 async def select_doc(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    messages = get_language_and_messages(context)
+    language, messages = get_language_and_messages(context)
 
-    yaml_file_path = r'config\templates.yaml'
+    yaml_file_path = TEMPLATES_PATH
     templates = load_templates(yaml_file_path)
 
     if not templates:
@@ -63,8 +78,9 @@ async def select_doc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data['input_step'] = 'select_doc'
     context.user_data['templates'] = templates
 
+@error_handler
 async def process_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    messages = get_language_and_messages(context)
+    language, messages = get_language_and_messages(context)
 
     if 'input_step' in context.user_data and context.user_data['input_step'] == 'select_doc':
         try:
@@ -82,6 +98,7 @@ async def process_select(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except ValueError:
             await context.bot.send_message(chat_id=update.effective_chat.id, text=messages['select_doc_number_error'])
 
+@error_handler
 async def generate_doc(update: Update, context: ContextTypes.DEFAULT_TYPE):
     language, messages = get_language_and_messages(context)
     
@@ -113,6 +130,7 @@ async def generate_doc(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await context.bot.send_message(chat_id=update.effective_chat.id, text=messages['generate_doc_error_full'])
         logging.error(f"Общая ошибка при генерации документа: {e}")
 
+@error_handler
 async def button_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
     await query.answer()
