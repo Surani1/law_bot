@@ -1,0 +1,114 @@
+- title: Договор аренды квартиры
+  template_text: |
+    {title}
+    {date}. {city}
+    
+    {landlord_info}
+    
+    {tenant_info}
+    
+    {rental_property_details}
+    
+    {payment_terms}
+    
+    {rights_and_obligations}
+    
+    {liability_and_disputes}
+    
+    {termination_conditions}
+    
+    {signatures}
+  fields:
+    - date
+    - city
+    - landlord_name
+    - landlord_company
+    - landlord_representative
+    - landlord_basis
+    - tenant_name
+    - tenant_pass_series
+    - tenant_pass_number
+    - tenant_pass_issued_by
+    - tenant_address
+    - property_address
+    - property_area
+    - property_condition
+    - rental_purpose
+    - rent_amount
+    - rent_due_date
+    - utility_expenses
+    - deposit_amount
+    - contract_duration
+    - termination_notice_period
+  sections:
+    - title: "Договор аренды квартиры"
+      font_size: 15
+      font_style: B
+      align: C
+    - text: "{date}, {city}"
+      font_size: 11
+      font_style: ""
+      align: L
+
+    - text: "{landlord_name}, {landlord_company}, в лице {landlord_representative}, действующего на основании {landlord_basis}, именуемый в дальнейшем 'Арендодатель', с одной стороны, и"
+      font_size: 11
+      font_style: ""
+      align: L
+    - text: "{tenant_name}, паспорт: серия {tenant_pass_series}, номер {tenant_pass_number}, выдан {tenant_pass_issued_by}, зарегистрированный по адресу {tenant_address}, именуемый в дальнейшем 'Арендатор', с другой стороны, совместно именуемые 'Стороны', заключили настоящий договор о нижеследующем:"
+      font_size: 11
+      font_style: ""
+      align: L
+    - title: "Предмет договора"
+      text: |
+        1.1. Арендодатель предоставляет Арендатору в аренду жилое помещение по адресу: {property_address}, площадью {property_area} кв.м.
+        1.2. Состояние помещения: {property_condition}.
+        1.3. Цель аренды: {rental_purpose}.
+      font_size: 11
+      font_style: ""
+      align: L
+      title_font_size: 12
+      title_font_style: B
+    - title: "Арендные платежи и порядок расчетов"
+      text: |
+        2.1. Размер арендной платы: {rent_amount} рублей в месяц.
+        2.2. Дата оплаты: {rent_due_date}.
+        2.3. Коммунальные платежи: {utility_expenses}.
+        2.4. Залог: {deposit_amount} рублей.
+      font_size: 11
+      font_style: ""
+      align: L
+      title_font_size: 12
+      title_font_style: B
+    - title: "Права и обязанности сторон"
+      text: |
+        3.1. Арендодатель обязуется предоставить жилое помещение в исправном состоянии.
+        3.2. Арендатор обязан использовать помещение строго в соответствии с его назначением и содержать его в надлежащем состоянии.
+      font_size: 11
+      font_style: ""
+      align: L
+      title_font_size: 12
+      title_font_style: B
+    - title: "Ответственность и урегулирование споров"
+      text: |
+        4.1. Стороны несут ответственность за нарушение условий договора в соответствии с законодательством РФ.
+        4.2. Все споры решаются путем переговоров или в судебном порядке.
+      font_size: 11
+      font_style: ""
+      align: L
+      title_font_size: 12
+      title_font_style: B
+    - title: "Расторжение договора"
+      text: |
+        5.1. Договор действует в течение {contract_duration}.
+        5.2. Для расторжения договора необходимо уведомить другую сторону за {termination_notice_period}.
+      font_size: 11
+      font_style: ""
+      align: L
+      title_font_size: 12
+      title_font_style: B
+    - text: |
+        Арендодатель: ________________________ Расшифровка: ________________________
+        Арендатор: ________________________ Расшифровка: ________________________
+      font_size: 11
+      font_style: ""
+      align: L

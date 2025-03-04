@@ -1,7 +1,7 @@
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, CallbackQueryHandler,filters
 from app.bot_handlers import start, help_command, input_data, select_doc, generate_doc, process_input_and_select, button_callback
 from app.config import TOKEN
-from app.logging import setup_logging
+from app.utils import setup_logging
 
 if __name__ == '__main__':
     setup_logging()
